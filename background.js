@@ -30,6 +30,22 @@ window.addEventListener("load", function() {
          }
 	};
 
+        // Check if context menu API is supported, and add a right click item
+        if (opera.contexts.menu) {
+            var menu = opera.contexts.menu;
+            var itemProperties = {
+                title:'Add to Instapaper',
+                icon: 'icons/instapaper-icon-18.png',
+                onclick: function(event) {
+                    postToInstapaper();
+                }
+            };
+            var menuItem = menu.createItem(itemProperties);
+            menu.addItem(menuItem);
+        }
+
+
+
 	// Create and add button
 	var button = opera.contexts.toolbar.createItem(UIItemProperties);
 	opera.contexts.toolbar.addItem(button);
